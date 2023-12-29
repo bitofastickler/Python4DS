@@ -1,21 +1,10 @@
-# pp 61
-
-l =  {"cars":
-  [{"Year": "1997", "Make": "Ford", "Model": "E350", "Price": "3200.00"},
-   {"Year": "1999", "Make": "Chevy", "Model": "Venture", "Price": "4800.00"},
-   {"Year": "1996", "Make": "Jeep", "Model": "Grand Cherokee", "Price": "4900.00"}
-]}
-
+# a possible alternative that is consistent with using with/as to load the json file from a local file path
 import json
-jsonString = json.dumps(l)
-jsonFile = open("cars.json", "w")
-jsonFile.write(jsonString)
-jsonFile.close() 
+path = "cars.json"
+with open(path, "r") as f:
+    content = json.load(f)
 
-jsonFile = open("cars.json", "r")
-pobj = json.load(jsonFile)
-
-for car in pobj["cars"]:  
-  for item in car.items():
-    print(item[0],':', item[1])
-  print('\n')
+for car in content["cars"]:
+    for item in car.items():
+        print(item[0], ':', item[1])
+    print('\n')
